@@ -16,7 +16,7 @@
  - Create Network - `docker network create user_app`
  - Start Postgress
    - `docker run --name postgres --network user_app -e POSTGRES_PASSWORD=mysceret -d -p 5432:5432 postgres`
- - Build The Image - `docker build -t user_app .`
+ - Build The Image - `docker build --network=host -t user_app .`
  - Start the Imge - `docker run -e DATABASE_URL=postgresql://postgres:mysceret@postgres:5432/postgres --network connect user_app -p 3000:3000 user_app`
 
 
