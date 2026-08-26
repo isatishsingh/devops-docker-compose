@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+
+    environment:
+      - POSTGRES_PASSWORD=mysceret
+
+  user_app:
+    build: 
+      context: ./
+      network: host
+      dockerfile: Dockerfile
+
+    environment:
+      - DATABASE_URL=postgresql://postgres:mysceret@postgres:5432/postgres
+    ports:
+      - 3000:3000
+
+    depends_on:
+      - postgres
